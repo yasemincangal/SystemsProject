@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define FILE_NAME "points_of_places.txt" //average points with place names and given point times by user will be shown in here
+#define FILE_NAME "/home/yasemin/deneme1/points_of_places.txt" //average points with place names and given point times by user will be shown in here
 
 struct Node{ //every node has name, point, next and previous one
     float point; //average point
@@ -30,7 +30,7 @@ int main() {
     FILE *input_file=NULL ;
     FILE *points_of_places=fopen(FILE_NAME,"a"); //create a file
 
-    input_file=fopen("C:\\Users\\hp\\CLionProjects\\restaurant_cafe_scoring\\cafe_restaurant.txt","r"); //writing and reading opened with file
+    input_file=fopen("/home/yasemin/deneme1/cafe_restaurant.txt","r"); //writing and reading opened with file
 
     if(input_file==NULL){//if there is no such like that folder
         printf("File is not found!!");
@@ -62,22 +62,28 @@ int main() {
 
 while(choice!=6 && choice>=1 && choice<=5 ){ //ask again till user wants to exit
     if(choice==1){ //take input from user the point and write that points with place names into a txt line by line
-        printlist();
-        char* where=malloc(20*sizeof(char));
+char *where=malloc(20*sizeof(char)); //place name 1 or 2 word
+char *where1=malloc(20*sizeof(char));
+printf("How many words is that place? (1 or 2)");
+int x;
+scanf("%d",&x);
+printf("Where? ");
+if(x==1){
+scanf("%s",where);
+}else if(x==2){
+scanf("%s %s",where,where1);
+strcat(where," ");
+strcat(where,where1);
+}
         float givepoint; //point that taken by user
-        printf("Where? ");
-        scanf( "%s", where); //input place name from user
-        // char n='\n'; //added new line to be equal like in txt file, read from line by line
-        //strncat(where,&n,1); //string conc.
-        printf("Give points max:5.0 min :0.0 ");
+        printf("\nGive points max:5.0 min :0.0 ");
         scanf("%f",&givepoint); //take the point by user
         int size=getSize(); //linkedlist current size (flexible)
         //printf("%d",size);
         if(givepoint<=5.0 && givepoint>=0.0 ){
             give_Point(givepoint,where,size); //give point a specific place
         }else{
-            printf("Point interval is max:5.0 min :0.0, give number again %f",&givepoint);
-            give_Point(givepoint,where,size);
+            printf("Point interval is not in 0.0-5.0");
         }
         printlist();//print the list after giving point
 
