@@ -11,7 +11,7 @@ typedef struct node{
 }node;
 struct node * head=NULL;
 
-int weeklycalenderapp() {
+int weekly_calender_app() {
     char ch[32]; // I used this code to print the current day, I founded online.
     struct tm *ts;
     size_t last;
