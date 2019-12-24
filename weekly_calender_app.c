@@ -9,9 +9,9 @@ typedef struct node{
     char activity_day[5000]; //the day of the activity given by the user
     struct node * next;
 }node;
-struct node * head=NULL;
 
-int weekly_calender_app() {
+struct node * head_=NULL;
+void weekly_calender_app() {
     char ch[32]; // I used this code to print the current day, I founded online.
     struct tm *ts;
     size_t last;
@@ -27,12 +27,12 @@ int weekly_calender_app() {
     createList(n,ch);
     displayMyList();
 
-    return 0;
+ 
 }
 void createList(int n,char ch[]){
     int i=0;
     struct node * new_node=NULL;
-    struct node * current=NULL; 
+    struct node * current=NULL;
 
     for(i=0; i<n; i++){ //This will create nodes number of n.
         new_node= (node*)malloc(sizeof(node));
@@ -82,23 +82,23 @@ void createList(int n,char ch[]){
             //EMPTY
         }
 
-        if(head == NULL){
-            head=new_node;
+        if(head_ == NULL){
+            head_=new_node;
         }else {
-            current = head;
+            current = head_;
             while (current->next != NULL)
                 current = current->next;
             current->next = new_node;
         }
     }
 }
-void displayMyList(){ 
+void displayMyList(){
     struct node * current;
-    current=head;
+    current=head_;
     while(current->next != NULL){
         printf("\t%s->%s",current->activity_day,current->todo);
         current=current->next;
 
     }
-    printf("\t%s->%s",current->activity_day,current->todo);
+    printf("\t%s->%s\n",current->activity_day,current->todo);
 }
