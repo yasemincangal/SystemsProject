@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "cafe_restaurant_app.h"
 #define FILE_NAME "/home/yasemin/deneme1/points_of_places.txt" //average points with place names and given point times by user will be shown in here
 
 struct Node{ //every node has name, point, next and previous one
@@ -16,17 +17,7 @@ struct Node{ //every node has name, point, next and previous one
 
 struct Node * head=NULL;
 
-void push(int index,char * name); //creates doubly linkedlist by adding nodes according to reading every line of txt
-int getSize(); //gives doubly linkedlist's size (line number of txt at the same time)
-void toString_Node(struct Node *cur_node);// it prints properties of specific node
-void printlist(); //prints all doubly linkedlist
-void print_into_txt_with_points(FILE *points_of_places); //prints points with places into a txt
-void give_Point(float point,char *name,int size); //gives point from user by taking its average and it stores how many times points given by users at the same time
-void give_Point_randomly_to_all(int size); //gives point randomly a "float number" to a specific place
-void interval(int min, int max,int size); //find places and prints in that point interval
-void sorted_list_according_to_points(int size); //prints sorted list of cafe_restaurant according to given points
-
-int main() {
+int cafe_restaurant_app() {
     FILE *input_file=NULL ;
     FILE *points_of_places=fopen(FILE_NAME,"a"); //create a file
 
@@ -60,34 +51,34 @@ int main() {
            "Give random points to all places type 5 \nTo exit type 6\n");
     scanf("%d",&choice); // take point interval, or choose fav. place then it will show next and prev.
 
-    while(choice!=6 && choice>=1 && choice<=5 ){ //ask again till user wants to exit
-        if(choice==1){ //take input from user the point and write that points with place names into a txt line by line
-            char *where=malloc(20*sizeof(char)); //place name 1 or 2 word
-            char *where1=malloc(20*sizeof(char));
-            printf("How many words is that place? (1 or 2)");
-            int x;
-            scanf("%d",&x);
-            printf("Where? ");
-                if(x==1){
-                    scanf("%s",where);
-                }else if(x==2){
-                    scanf("%s %s",where,where1);
-                    strcat(where," ");
-                    strcat(where,where1);
-                }
-            float givepoint; //point that taken by user
-            printf("\nGive points max:5.0 min :0.0 ");
-            scanf("%f",&givepoint); //take the point by user
-             int size=getSize(); //linkedlist current size (flexible)
-             //printf("%d",size);
-                if(givepoint<=5.0 && givepoint>=0.0 ){
-                    give_Point(givepoint,where,size); //give point a specific place
-                }else{
-                    printf("Point interval is not in 0.0-5.0");
-                   }
-            printlist();//print the list after giving point
+while(choice!=6 && choice>=1 && choice<=5 ){ //ask again till user wants to exit
+    if(choice==1){ //take input from user the point and write that points with place names into a txt line by line
+char *where=malloc(20*sizeof(char)); //place name 1 or 2 word
+char *where1=malloc(20*sizeof(char));
+printf("How many words is that place? (1 or 2)");
+int x;
+scanf("%d",&x);
+printf("Where? ");
+if(x==1){
+scanf("%s",where);
+}else if(x==2){
+scanf("%s %s",where,where1);
+strcat(where," ");
+strcat(where,where1);
+}
+        float givepoint; //point that taken by user
+        printf("\nGive points max:5.0 min :0.0 ");
+        scanf("%f",&givepoint); //take the point by user
+        int size=getSize(); //linkedlist current size (flexible)
+        //printf("%d",size);
+        if(givepoint<=5.0 && givepoint>=0.0 ){
+            give_Point(givepoint,where,size); //give point a specific place
+        }else{
+            printf("Point interval is not in 0.0-5.0");
+        }
+        printlist();//print the list after giving point
 
-            print_into_txt_with_points(points_of_places); //store values in txt file
+        print_into_txt_with_points(points_of_places); //store values in txt file
 
     }else if(choice==2){
         char point_interval[10]; //input from user as 0-5 ex.
@@ -289,5 +280,6 @@ void sorted_list_according_to_points(int size){ //selection sort with two array 
             printf("%d. %s , point:%f \n",i+1, sorted_place_arr[j],arr[j]); //print info by starting from highest point
             i++;
         }
+
 
 }
