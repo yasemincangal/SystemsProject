@@ -1,9 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "cafe_restaurant_app.h"
-#define FILE_NAME "/home/yasemin/deneme1/points_of_places.txt" //average points with place names and given point times by user will be shown in here
-
 struct Node{ //every node has name, point, next and previous one
     float point; //average point
     int line; //in folder //might be deleted maybe
@@ -15,9 +9,15 @@ struct Node{ //every node has name, point, next and previous one
     int user_gave_point; //given point times by user
 };
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "cafe_restaurant_app.h"
+#define FILE_NAME "/home/yasemin/deneme1/points_of_places.txt" //average points with place names and given point times by user will be shown in here
+
 struct Node * head=NULL;
 
-int cafe_restaurant_app() {
+void cafe_restaurant_app() {
     FILE *input_file=NULL ;
     FILE *points_of_places=fopen(FILE_NAME,"a"); //create a file
 
@@ -25,7 +25,7 @@ int cafe_restaurant_app() {
 
     if(input_file==NULL){//if there is no such like that folder
         printf("File is not found!!");
-        return 1;
+     
     }
 
     char line[20]; //one txt line
@@ -117,7 +117,7 @@ strcat(where,where1);
 
     fclose(points_of_places); //close files
     fclose(input_file);
-    return 0;
+     
 }
 
 void push(int index,char *name){  //add new node to end of the linkedlist
