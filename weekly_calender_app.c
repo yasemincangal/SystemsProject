@@ -3,15 +3,14 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "weeklycalenderapp.h"
+#include "weekly_calender_app.h"
 typedef struct node{
     char todo[5000]; // Activity that user enters
     char activity_day[5000]; //the day of the activity given by the user
     struct node * next;
 }node;
 struct node * head=NULL;
-void createList(int n,char ch[]);
-void displayMyList();
+
 int weeklycalenderapp() {
     char ch[32]; // I used this code to print the current day, I founded online.
     struct tm *ts;
