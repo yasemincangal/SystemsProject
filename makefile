@@ -1,5 +1,5 @@
-array :main.o cafe_restaurant_app.o weekly_calender_app.o
-gcc -o array main.o cafe_restaurant_app.o weekly_calender_app.o
+systemproject :main.o cafe_restaurant_app.o weekly_calender_app.o
+gcc -o systemproject main.o cafe_restaurant_app.o weekly_calender_app.o
 
 main.o :  main.c
 cc -c main.c
